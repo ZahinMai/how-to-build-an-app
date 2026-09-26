@@ -8,12 +8,12 @@ export function ContactSection() {
       style={{ borderBottom: "2px solid var(--color-ink)" }}
     >
       <div
-        className="px-6 py-16 md:px-12 flex flex-col justify-between"
+        className="contact-copy px-6 py-10 md:px-12 md:py-12 flex flex-col justify-center"
         style={{ borderRight: "2px solid var(--color-ink)" }}
       >
         <div>
           <p className="eyebrow mb-4" style={{ color: "var(--color-burnt)" }}>
-            Find me elsewhere
+            A few other corners of the internet
           </p>
           <h2
             className="font-serif leading-tight mb-6"
@@ -23,20 +23,17 @@ export function ContactSection() {
               fontWeight: 900,
             }}
           >
-            A little more about me.
+            Around the web
           </h2>
           <p
             className="text-sm leading-relaxed"
             style={{ color: "var(--color-ink-soft)", maxWidth: "40ch" }}
           >
-            This is where I share what I work on, what I make, and the side
-            quests that catch my attention. For the more official bits, you can
-            find me on LinkedIn—or just send me a note.
+            This site is a snapshot of what I do and what I’m curious about.
+            LinkedIn is for work-related updates; Instagram is a bit more
+            everyday. Email works for everything else.
           </p>
         </div>
-        <a href="mailto:zahin08@outlook.com" className="email-button">
-          zahin08@outlook.com
-        </a>
       </div>
       <div className="flex flex-col">
         {CONTACT_LINKS.map(({ label, handle, href, color }, index) => (

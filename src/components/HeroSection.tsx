@@ -97,8 +97,8 @@ export function HeroSection({
           >
             I'm Zahin — a full stack software developer working across Java,
             agentic AI, and technical Business Analysis. This site is part
-            professional portfolio, part notebook, and part home for the
-            interests and side quests that keep me curious.
+            professional profile, part project portfolio, and part showcase of my
+            interests.
           </p>
         </div>
       </div>

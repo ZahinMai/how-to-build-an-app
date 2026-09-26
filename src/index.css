@@ -60,9 +60,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
 .post-card { display: flex; flex-direction: column; padding: 2.5rem; background: transparent; border: 0; cursor: pointer; min-height: 230px; }
 .post-card:hover { background: rgba(255,255,255,.18); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; }
-.email-button { display: inline-block; align-self: flex-start; margin-top: 2rem; padding: 1rem 2rem; background: var(--color-ink); color: var(--color-cream); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; }
-.contact-link { display: flex; align-items: center; justify-content: space-between; padding: 2rem 3rem; flex: 1; }
+.contact-link { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 2rem; flex: 1; }
 .contact-link:hover { opacity: .78; }
+.skill-list { display: flex; align-content: center; align-items: center; flex-wrap: wrap; gap: .65rem; }
+.skill-item { border: 1px solid var(--color-ink); padding: .55rem .75rem; font-size: .75rem; line-height: 1.2; }
+.metric-value-long { font-size: clamp(1.35rem, 2.4vw, 2.25rem) !important; }
 .footer { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; border-top: 1px solid var(--color-ink); }
 .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 1.25rem; background: rgba(26,23,20,.72); }
 .modal { position: relative; width: min(680px, 100%); max-height: min(80vh, 700px); overflow: auto; background: var(--color-cream); border: 2px solid var(--color-ink); padding: 2rem; box-shadow: 12px 12px 0 var(--color-ink); }
@@ -80,8 +82,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
 .gate-world-transition svg { display: block; width: 100%; height: 100%; }
 .notebook-nav { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid rgba(26,23,20,.15); background: rgba(245,229,199,.88); backdrop-filter: blur(12px); }
 .notebook-nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 2rem; }
-.notebook-nav-link, .notebook-footer-link { padding: 0; border: 0; background: none; color: var(--color-ink); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; cursor: pointer; text-decoration: none; }
-.notebook-nav-link:hover, .notebook-footer-link:hover { opacity: .65; }
+.notebook-nav-link { padding: 0; border: 0; background: none; color: var(--color-ink); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; cursor: pointer; text-decoration: none; }
+.notebook-nav-link:hover { opacity: .65; }
 .notebook-nav-title { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; font-weight: 700; }
 .notebook-hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: linear-gradient(180deg, #d8cba9 0%, #e6d3ad 48%, var(--notebook-sand) 100%); }
 .notebook-desert { position: absolute; inset: 0; overflow: hidden; will-change: transform; background: var(--color-cream); }
@@ -103,14 +105,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
 .notebook-art-sticker { position: absolute; right: .75rem; bottom: .75rem; padding: .4rem .65rem; border-radius: 999px; background: var(--color-cream); color: var(--color-ink); font-family: var(--font-serif); font-size: .75rem; font-style: italic; transform: rotate(-5deg); }
 .notebook-post-meta, .notebook-post-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .notebook-tag { padding: .25rem .6rem; background: var(--color-burnt); color: var(--color-cream); font-size: .65rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; }
-.notebook-coming-soon, .notebook-post-bottom { color: var(--color-ink-soft); font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; opacity: .58; }
+.notebook-post-bottom { color: var(--color-ink-soft); font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; opacity: .58; }
 .notebook-post-card h2 { margin: 1rem 0 .65rem; font-family: var(--font-serif); font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.25; }
 .notebook-post-card p { flex: 1; margin: 0 0 1.5rem; color: var(--color-ink-soft); font-size: .875rem; line-height: 1.65; }
 .notebook-post-bottom .notebook-read { color: var(--color-burnt); font-weight: 500; opacity: 1; }
 .notebook-sand-fade { height: 6rem; background: linear-gradient(to bottom, var(--notebook-sand), var(--color-cream)); }
-.notebook-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 2rem; border-top: 1px solid var(--color-ink); background: var(--color-cream); }
-.notebook-footer-name { padding: 0; border: 0; background: none; color: var(--color-ink); font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; font-weight: 700; cursor: pointer; }
-.notebook-footer > span { color: var(--color-silver); font-size: .65rem; text-transform: uppercase; letter-spacing: .15em; }
 
 @media (max-width: 900px) {
   .category-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -125,7 +124,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
   .post-card { border-right: 0 !important; border-bottom: 1px solid var(--color-ink); min-height: auto; }
   .experience-row { grid-template-columns: 1fr; }
   .experience-row > :first-child { border-right: 0 !important; border-bottom: 1px solid var(--color-ink); }
-  .contact-link { padding: 1.5rem; }
+  .contact-link { padding: 1rem 1.5rem; }
 }
 
 @media (max-width: 640px) {
@@ -146,8 +145,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
   .notebook-categories button { flex: 0 0 auto; padding: .8rem .9rem; font-size: .62rem; }
   .notebook-post-card { min-height: 0; padding: 1rem; border-right: 0; }
   .notebook-post-art { aspect-ratio: 1 / 1; }
-  .notebook-footer { flex-wrap: wrap; padding: 1.25rem 1.5rem; }
-  .notebook-footer > span { order: 1; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

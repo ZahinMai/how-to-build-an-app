@@ -1,4 +1,8 @@
-import { ADDITIONAL_EXPERIENCE, EXPERIENCE } from "@/data/portfolio"
+import {
+  ADDITIONAL_EXPERIENCE,
+  EXPERIENCE,
+  LEADERSHIP_AND_ACTIVITIES,
+} from "@/data/portfolio"
 
 export function ExperienceSection() {
   return (
@@ -90,6 +94,44 @@ export function ExperienceSection() {
               style={{ fontFamily: "var(--font-serif)" }}
             >
               {item.company}
+            </p>
+          </div>
+        </div>
+      ))}
+      <div
+        className="section-title"
+        style={{
+          borderTop: "1px solid var(--color-ink)",
+          borderBottom: "1px solid var(--color-ink)",
+        }}
+      >
+        Leadership &amp; activities
+      </div>
+      {LEADERSHIP_AND_ACTIVITIES.map((item, index) => (
+        <div
+          key={item.title}
+          className="experience-row"
+          style={{
+            borderBottom:
+              index < LEADERSHIP_AND_ACTIVITIES.length - 1
+                ? "1px solid var(--color-ink)"
+                : undefined,
+          }}
+        >
+          <div
+            className="px-6 py-6 md:px-12"
+            style={{ borderRight: "1px solid var(--color-ink)" }}
+          >
+            <p className="eyebrow" style={{ color: "var(--color-burnt)" }}>
+              {item.title}
+            </p>
+          </div>
+          <div className="px-6 py-6 md:px-12">
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              {item.details}
             </p>
           </div>
         </div>
