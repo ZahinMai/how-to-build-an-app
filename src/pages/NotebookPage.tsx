@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react"
 
+import { LandscapeArtwork } from "@/components/LandscapeArtwork"
 import { POSTS } from "@/data/portfolio"
+import { CONTACT_LINKS } from "@/data/portfolio"
 import type { Post } from "@/types/portfolio"
 
 type NotebookPageProps = {
@@ -9,7 +11,6 @@ type NotebookPageProps = {
 }
 
 const CREAM = "var(--color-cream)"
-const SAND = "#ead8b5"
 const POST_ART = [
   {
     background: "#d8c8a2",
@@ -17,10 +18,19 @@ const POST_ART = [
       <svg viewBox="0 0 500 360" aria-hidden="true">
         <circle cx="370" cy="95" r="48" fill="#e7925b" />
         <path d="M0 230 125 130l95 85 105-125 175 135v135H0Z" fill="#8fa870" />
-        <path d="M0 278 125 205l110 75 105-80 160 75v85H0Z" fill="#cd6e3a" opacity=".72" />
+        <path
+          d="M0 278 125 205l110 75 105-80 160 75v85H0Z"
+          fill="#cd6e3a"
+          opacity=".72"
+        />
         <path d="M160 360c0-55 38-96 88-96s88 41 88 96" fill="#f5e5c7" />
         <path d="M211 278h74l-7 82h-60Z" fill="#a47a99" />
-        <path d="M284 292c45-8 43 40 0 39" fill="none" stroke="#a47a99" strokeWidth="12" />
+        <path
+          d="M284 292c45-8 43 40 0 39"
+          fill="none"
+          stroke="#a47a99"
+          strokeWidth="12"
+        />
       </svg>
     ),
   },
@@ -28,11 +38,29 @@ const POST_ART = [
     background: "#d9b9a0",
     illustration: (
       <svg viewBox="0 0 500 360" aria-hidden="true">
-        <rect x="90" y="60" width="320" height="245" rx="8" fill="#f5e5c7" transform="rotate(-5 250 180)" />
+        <rect
+          x="90"
+          y="60"
+          width="320"
+          height="245"
+          rx="8"
+          fill="#f5e5c7"
+          transform="rotate(-5 250 180)"
+        />
         <path d="m151 221 76-98 42 54 42-30 70 87H151Z" fill="#8fa870" />
         <circle cx="340" cy="116" r="23" fill="#e7925b" />
-        <path d="M0 310c110-30 250-18 500-52v102H0Z" fill="#a47a99" opacity=".8" />
-        <path d="M213 284c8-55 25-78 45-96m0 96c2-48 23-67 48-79m-93 79c-5-33-21-47-41-57" fill="none" stroke="#698464" strokeWidth="8" strokeLinecap="round" />
+        <path
+          d="M0 310c110-30 250-18 500-52v102H0Z"
+          fill="#a47a99"
+          opacity=".8"
+        />
+        <path
+          d="M213 284c8-55 25-78 45-96m0 96c2-48 23-67 48-79m-93 79c-5-33-21-47-41-57"
+          fill="none"
+          stroke="#698464"
+          strokeWidth="8"
+          strokeLinecap="round"
+        />
         <circle cx="257" cy="183" r="12" fill="#e7925b" />
         <circle cx="310" cy="202" r="12" fill="#f2b05a" />
         <circle cx="171" cy="225" r="12" fill="#a47a99" />
@@ -43,11 +71,31 @@ const POST_ART = [
     background: "#c8d0b2",
     illustration: (
       <svg viewBox="0 0 500 360" aria-hidden="true">
-        <path d="M0 258c98-62 169-42 244 0s161 49 256-8v110H0Z" fill="#8fa870" />
+        <path
+          d="M0 258c98-62 169-42 244 0s161 49 256-8v110H0Z"
+          fill="#8fa870"
+        />
         <rect x="191" y="104" width="122" height="128" rx="14" fill="#f5e5c7" />
-        <path d="M313 133c76-17 75 80 0 69" fill="none" stroke="#f5e5c7" strokeWidth="19" />
-        <path d="M214 88c-19-24 25-30 7-58m49 58c-19-24 25-30 7-58" fill="none" stroke="#a47a99" strokeWidth="8" strokeLinecap="round" />
-        <path d="M106 236c2-54 7-93 39-121m-39 121c-1-41-20-62-48-75m47 49c20-34 43-42 66-44" fill="none" stroke="#698464" strokeWidth="8" strokeLinecap="round" />
+        <path
+          d="M313 133c76-17 75 80 0 69"
+          fill="none"
+          stroke="#f5e5c7"
+          strokeWidth="19"
+        />
+        <path
+          d="M214 88c-19-24 25-30 7-58m49 58c-19-24 25-30 7-58"
+          fill="none"
+          stroke="#a47a99"
+          strokeWidth="8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M106 236c2-54 7-93 39-121m-39 121c-1-41-20-62-48-75m47 49c20-34 43-42 66-44"
+          fill="none"
+          stroke="#698464"
+          strokeWidth="8"
+          strokeLinecap="round"
+        />
         <circle cx="146" cy="111" r="15" fill="#e7925b" />
         <circle cx="96" cy="163" r="15" fill="#a47a99" />
         <circle cx="172" cy="164" r="15" fill="#f2b05a" />
@@ -91,7 +139,14 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
             ← Back to reality
           </button>
           <span className="notebook-nav-title">Out of Office</span>
-          <a className="notebook-nav-link" href="#">Secret Society</a>
+          <a
+            className="notebook-nav-link"
+            href="https://chat.whatsapp.com/Br262Z4PeMK9KmI13HeEP1"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Sober Socials
+          </a>
         </div>
       </header>
 
@@ -103,22 +158,11 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
         >
           <svg
             className="notebook-landscape"
-            viewBox="0 0 1600 900"
+            viewBox="120 90 560 390"
             preserveAspectRatio="xMidYMid slice"
             focusable="false"
           >
-            <rect width="1600" height="900" fill="var(--color-cream)" />
-            <circle cx="1190" cy="300" r="96" fill="var(--color-burnt)" />
-            <polygon
-              points="0,650 280,450 500,590 820,350 1110,590 1390,410 1600,520 1600,900 0,900"
-              fill="var(--color-sage)"
-              opacity=".8"
-            />
-            <polygon
-              points="0,760 250,620 490,735 790,570 1080,735 1370,610 1600,690 1600,900 0,900"
-              fill="var(--color-burnt)"
-              opacity=".55"
-            />
+            <LandscapeArtwork />
           </svg>
         </div>
         <div className="notebook-hero-fade" aria-hidden="true" />
@@ -179,33 +223,35 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
 
         <div className="notebook-post-grid">
           {filteredPosts.map((post) => {
-            const artIndex = POSTS.findIndex((item) => item.title === post.title)
+            const artIndex = POSTS.findIndex(
+              (item) => item.title === post.title,
+            )
             const art = POST_ART[artIndex % POST_ART.length]
 
             return (
-            <button
-              key={post.title}
-              className="notebook-post-card"
-              onClick={() => onOpenPost(post)}
-            >
-              <span
-                className="notebook-post-art"
-                style={{ backgroundColor: art.background }}
+              <button
+                key={post.title}
+                className="notebook-post-card"
+                onClick={() => onOpenPost(post)}
               >
-                {art.illustration}
-                <span className="notebook-art-sticker">a little story</span>
-              </span>
-              <div className="notebook-post-meta">
-                <span className="notebook-tag">{post.tag}</span>
-                <span className="notebook-coming-soon">A note for later</span>
-              </div>
-              <h2>{post.title}</h2>
-              <p>{post.excerpt}</p>
-              <div className="notebook-post-bottom">
-                <span>{post.date}</span>
-                <span className="notebook-read">Take a peek →</span>
-              </div>
-            </button>
+                <span
+                  className="notebook-post-art"
+                  style={{ backgroundColor: art.background }}
+                >
+                  {art.illustration}
+                  <span className="notebook-art-sticker">a little story</span>
+                </span>
+                <div className="notebook-post-meta">
+                  <span className="notebook-tag">{post.tag}</span>
+                  <span className="notebook-coming-soon">A note for later</span>
+                </div>
+                <h2>{post.title}</h2>
+                <p>{post.excerpt}</p>
+                <div className="notebook-post-bottom">
+                  <span>{post.date}</span>
+                  <span className="notebook-read">Take a peek →</span>
+                </div>
+              </button>
             )
           })}
         </div>

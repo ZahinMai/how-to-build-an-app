@@ -8,6 +8,11 @@ import { DetailModal } from "@/components/DetailModal"
 import { EducationSection } from "@/components/EducationSection"
 import { ExperienceSection } from "@/components/ExperienceSection"
 import { Footer } from "@/components/Footer"
+import {
+  GateTransition,
+  getGateBounds,
+  type GateBounds,
+} from "@/components/GateTransition"
 import { Header } from "@/components/Header"
 import { HeroSection } from "@/components/HeroSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
@@ -22,7 +27,10 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activePost, setActivePost] = useState<Post | null>(null)
   const [showNotebook, setShowNotebook] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [gateTransition, setGateTransition] = useState<{
+    bounds: GateBounds
+    phase: "zooming" | "revealing"
+  } | null>(null)
 
   const closeAll = useCallback(() => {
     setSelectedProject(null)
@@ -40,6 +48,13 @@ function App() {
       const postIndex = hash.match(/^#post-(\d+)$/)?.[1]
       setActivePost(postIndex ? (POSTS[Number(postIndex)] ?? null) : null)
       setShowNotebook(hash === "#notebook")
+      if (hash === "#notebook") {
+        setGateTransition((current) =>
+          current?.phase === "zooming"
+            ? { ...current, phase: "revealing" }
+            : current,
+        )
+      }
     }
 
     onHashChange()
@@ -50,23 +65,6 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [activePost, showNotebook])
-
-  useEffect(() => {
-    if (!isTransitioning) return
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      window.location.hash = "notebook"
-      setIsTransitioning(false)
-      return
-    }
-
-    const timeout = window.setTimeout(() => {
-      window.location.hash = "notebook"
-      setIsTransitioning(false)
-    }, 1450)
-
-    return () => window.clearTimeout(timeout)
-  }, [isTransitioning])
 
   const openPost = (post: Post) => {
     const index = POSTS.findIndex((item) => item.title === post.title)
@@ -81,13 +79,24 @@ function App() {
     window.location.hash = "work"
   }
 
+  const beginNotebookTransition = (bounds: GateBounds) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.location.hash = "notebook"
+      return
+    }
+
+    setGateTransition({ bounds, phase: "zooming" })
+  }
+
   const openFromLogo = () => {
     if (activePost || showNotebook) {
       window.location.hash = "work"
       return
     }
 
-    setIsTransitioning(true)
+    window.scrollTo(0, 0)
+    const gateSvg = document.querySelector<SVGSVGElement>(".gate-landscape-svg")
+    if (gateSvg) beginNotebookTransition(getGateBounds(gateSvg))
   }
 
   return (
@@ -99,15 +108,21 @@ function App() {
         fontFamily: "var(--font-sans)",
       }}
     >
+      {gateTransition && (
+        <GateTransition
+          bounds={gateTransition.bounds}
+          phase={gateTransition.phase}
+          onZoomComplete={() => {
+            setGateTransition((current) =>
+              current ? { ...current, phase: "revealing" } : current,
+            )
+            window.location.hash = "notebook"
+          }}
+          onRevealComplete={() => setGateTransition(null)}
+        />
+      )}
       {activePost ? (
         <>
-          <Header
-            filter={filter}
-            mobileOpen={mobileOpen}
-            setFilter={setFilter}
-            setMobileOpen={setMobileOpen}
-            onLogoClick={openFromLogo}
-          />
           <BlogPostPage post={activePost} onBack={returnToNotebook} />
           <Footer />
         </>
@@ -130,8 +145,8 @@ function App() {
           />
           <main id="main">
             <HeroSection
-              isTransitioning={isTransitioning}
-              onEnterNotebook={openFromLogo}
+              isTransitioning={gateTransition !== null}
+              onEnterNotebook={beginNotebookTransition}
             />
             <ProjectsSection filter={filter} onSelect={setSelectedProject} />
             <SkillsSection />
