@@ -1,20 +1,6 @@
-export function ContactSection() {
-  const links = [
-    [
-      "LinkedIn",
-      "zahin-maisa",
-      "https://www.linkedin.com/in/zahin-maisa-3058131ba",
-      "var(--color-mauve)",
-    ],
-    [
-      "Email",
-      "zahin08@outlook.com",
-      "mailto:zahin08@outlook.com",
-      "var(--color-forest)",
-    ],
-    ["Phone", "+44 7377 887085", "tel:+447377887085", "var(--color-amber)"],
-  ]
+import { CONTACT_LINKS } from "@/data/portfolio"
 
+export function ContactSection() {
   return (
     <section
       id="contact"
@@ -27,7 +13,7 @@ export function ContactSection() {
       >
         <div>
           <p className="eyebrow mb-4" style={{ color: "var(--color-burnt)" }}>
-            Open to software engineering opportunities
+            Find me elsewhere
           </p>
           <h2
             className="font-serif leading-tight mb-6"
@@ -37,15 +23,15 @@ export function ContactSection() {
               fontWeight: 900,
             }}
           >
-            Let's build useful financial technology.
+            A little more about me.
           </h2>
           <p
             className="text-sm leading-relaxed"
             style={{ color: "var(--color-ink-soft)", maxWidth: "40ch" }}
           >
-            I'm targeting software engineering roles where I can apply Java,
-            Spring Boot, AI orchestration, APIs, databases, and a strong
-            understanding of business and operational requirements.
+            This is where I share what I work on, what I make, and the side
+            quests that catch my attention. For the more official bits, you can
+            find me on LinkedIn—or just send me a note.
           </p>
         </div>
         <a href="mailto:zahin08@outlook.com" className="email-button">
@@ -53,14 +39,14 @@ export function ContactSection() {
         </a>
       </div>
       <div className="flex flex-col">
-        {links.map(([label, handle, href, color], index) => (
+        {CONTACT_LINKS.map(({ label, handle, href, color }, index) => (
           <a
             key={label}
             href={href}
             className="contact-link"
             style={{
               borderBottom:
-                index < links.length - 1
+                index < CONTACT_LINKS.length - 1
                   ? "1px solid var(--color-ink)"
                   : undefined,
             }}

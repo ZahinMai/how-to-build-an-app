@@ -1,4 +1,10 @@
+import { CONTACT_LINKS } from "@/data/portfolio"
+
 export function Footer() {
+  const footerLinks = CONTACT_LINKS.filter(({ label }) =>
+    ["LinkedIn", "Instagram", "Email"].includes(label),
+  )
+
   return (
     <footer className="footer">
       <a
@@ -15,11 +21,13 @@ export function Footer() {
         Software Engineer · 2026
       </span>
       <div className="flex gap-6">
-        {["LinkedIn", "Email", "Phone"].map((label) => (
+        {footerLinks.map(({ label, href }) => (
           <a
             key={label}
-            href="#contact"
+            href={href}
             className="text-xs uppercase tracking-widest hover:opacity-60"
+            target={href.startsWith("https://") ? "_blank" : undefined}
+            rel={href.startsWith("https://") ? "noreferrer" : undefined}
           >
             {label}
           </a>

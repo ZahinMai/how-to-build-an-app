@@ -31,9 +31,9 @@ export function Header({
           {mobileOpen ? "Close" : "Menu"}
         </button>
         <nav className="hidden gap-6 md:flex" aria-label="Primary navigation">
-          {NAV_LINKS.slice(0, 3).map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} className="nav-link">
-              {link}
+          {NAV_LINKS.slice(0, 3).map(({ label, href }) => (
+            <a key={label} href={href} className="nav-link">
+              {label}
             </a>
           ))}
         </nav>
@@ -50,9 +50,9 @@ export function Header({
           Zahin Maisa
         </a>
         <div className="hidden items-center gap-4 md:flex">
-          {NAV_LINKS.slice(3).map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} className="nav-link">
-              {link}
+          {NAV_LINKS.slice(3).map(({ label, href }) => (
+            <a key={label} href={href} className="nav-link">
+              {label}
             </a>
           ))}
           <a href="#contact" className="nav-cta">
@@ -68,9 +68,9 @@ export function Header({
         className={`mobile-navigation md:hidden ${mobileOpen ? "is-open" : ""}`}
         aria-label="Mobile navigation"
       >
-        {NAV_LINKS.map((link) => (
-          <a key={link} href={`#${link.toLowerCase()}`} onClick={closeMobile}>
-            {link}
+        {NAV_LINKS.map(({ label, href }) => (
+          <a key={label} href={href} onClick={closeMobile}>
+            {label}
           </a>
         ))}
       </nav>
