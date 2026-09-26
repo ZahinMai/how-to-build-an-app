@@ -1,14 +1,34 @@
 import { SKILLS } from "@/data/portfolio"
 
 const METRICS = [
-  ["1st", "Class degree", "var(--color-burnt)", "var(--color-cream)"],
-  ["3", "Core technologies", "var(--color-cream)", "var(--color-ink)"],
-  ["60%", "PMO overhead reduced", "var(--color-mauve)", "var(--color-cream)"],
-  ["£50M", "Contract safeguarded", "var(--color-cream)", "var(--color-ink)"],
-  ["5–16", "Students taught", "var(--color-forest)", "var(--color-cream)"],
   [
-    "1",
-    "Account activation stage improved",
+    "1st",
+    "Class BSc in Computer Science",
+    "var(--color-burnt)",
+    "var(--color-cream)",
+  ],
+  ["60%", "Reduction in PMO admin", "var(--color-cream)", "var(--color-ink)"],
+  [
+    "£50M",
+    "Contract supported by cyber certification evidence",
+    "var(--color-mauve)",
+    "var(--color-cream)",
+  ],
+  [
+    "Days → minutes",
+    "Account activation stage at BNY",
+    "var(--color-cream)",
+    "var(--color-ink)",
+  ],
+  [
+    "5–16",
+    "Age range of coding students",
+    "var(--color-forest)",
+    "var(--color-cream)",
+  ],
+  [
+    "100%",
+    "Taster-to-student conversion",
     "var(--color-amber)",
     "var(--color-ink)",
   ],
@@ -26,39 +46,13 @@ export function SkillsSection() {
             className="section-title"
             style={{ borderBottom: "1px solid var(--color-ink)" }}
           >
-            Skills
+            Skills &amp; tools
           </div>
-          <div className="px-6 py-10 md:px-12 flex flex-col gap-6">
+          <div className="skill-list px-6 py-8 md:px-12">
             {SKILLS.map((skill) => (
-              <div key={skill.label}>
-                <div className="flex justify-between items-baseline mb-2">
-                  <span className="text-sm font-medium">{skill.label}</span>
-                  <span
-                    className="font-serif text-xl font-bold"
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      color: skill.color,
-                    }}
-                  >
-                    {skill.level}%
-                  </span>
-                </div>
-                <div
-                  className="h-2 overflow-hidden"
-                  style={{
-                    backgroundColor: "var(--color-silver)",
-                    opacity: 0.4,
-                  }}
-                >
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${skill.level}%`,
-                      backgroundColor: skill.color,
-                    }}
-                  />
-                </div>
-              </div>
+              <span key={skill} className="skill-item">
+                {skill}
+              </span>
             ))}
           </div>
         </div>
@@ -67,7 +61,7 @@ export function SkillsSection() {
             className="section-title"
             style={{ borderBottom: "1px solid var(--color-ink)" }}
           >
-            By the Numbers
+            Selected highlights
           </div>
           <div className="grid grid-cols-2 grid-rows-3">
             {METRICS.map(([value, label, backgroundColor, color], index) => (
@@ -84,7 +78,9 @@ export function SkillsSection() {
                 }}
               >
                 <div
-                  className="font-serif font-black leading-none mb-1"
+                  className={`metric-value font-serif font-black leading-none mb-1 ${
+                    value === "Days → minutes" ? "metric-value-long" : ""
+                  }`}
                   style={{
                     fontFamily: "var(--font-serif)",
                     fontSize: "clamp(2rem, 4vw, 3.5rem)",

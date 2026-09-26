@@ -4,7 +4,6 @@ import type {
   Experience,
   Post,
   Project,
-  Skill,
 } from "@/types/portfolio"
 
 export const NAV_LINKS = [
@@ -57,7 +56,7 @@ export const PROJECTS: Project[] = [
     desc: "An agentic AI workflow for processing institutional client data and accelerating account activation.",
     tech: ["Java", "Spring Boot", "Microservices"],
     color: "#cd6e3a",
-    year: "2026",
+    year: "2025",
     details:
       "A BNY client onboarding platform built around Spring Boot microservices and agentic AI orchestration.",
     outcome: "Reduced an account activation stage from days to minutes.",
@@ -78,7 +77,7 @@ export const PROJECTS: Project[] = [
     tag: "Data Visualisation",
     title: "Employee Engagement Platform",
     desc: "A data visualisation platform for aggregating and analysing employee engagement metrics.",
-    tech: ["Data Analysis", "Visualisation", "JavaScript"],
+    tech: ["Data visualisation", "Employee engagement"],
     color: "#4a7058",
     year: "2025",
     details:
@@ -107,22 +106,28 @@ export const PROJECT_FILTERS: Record<string, string[]> = {
   "Contract Compliance Evidence": ["Data"],
 }
 
-export const SKILLS: Skill[] = [
-  { label: "Java / Spring Boot", level: 90, color: "#cd6e3a" },
-  { label: "REST APIs / Microservices", level: 88, color: "#9a7ba0" },
-  { label: "Python / C++ / JavaScript", level: 82, color: "#4a7058" },
-  { label: "MySQL / PostgreSQL", level: 80, color: "#e8a030" },
-  { label: "Angular / React", level: 78, color: "#8fa870" },
-  { label: "LangChain / LangGraph / MCP", level: 75, color: "#d4a080" },
+export const SKILLS = [
+  "Java",
+  "Spring Boot",
+  "REST APIs",
+  "Microservices",
+  "MySQL",
+  "PostgreSQL",
+  "MongoDB",
+  "Angular",
+  "React",
+  "JavaScript",
+  "Python",
+  "C++",
+  "LangChain",
+  "LangGraph",
+  "MCP",
+  "AWS",
+  "Docker",
+  "Agile / Scrum",
 ]
 
 export const EXPERIENCE: Experience[] = [
-  {
-    role: "Technology Graduate Associate",
-    company: "LSEG · London",
-    period: "Aug 2026 — Present",
-    desc: "Engineering agentic AI orchestration workflows using Java, Spring Boot microservices, and technologies including LangChain, LangGraph, and MCP.",
-  },
   {
     role: "Core Java Developer (Intern)",
     company: "BNY · Manchester",
@@ -164,6 +169,28 @@ export const ADDITIONAL_EXPERIENCE: AdditionalExperience[] = [
     company: "British Heart Foundation · Leicester",
     period: "Jun 2023 — Aug 2023",
   },
+  {
+    role: "Tutor",
+    company: "My Learning Room · Remote",
+    period: "Jan 2023 — Jun 2023",
+  },
+  {
+    role: "Production Operative",
+    company: "HelloFresh · Nuneaton",
+    period: "Nov 2022 — Jan 2023",
+  },
+]
+
+export const LEADERSHIP_AND_ACTIVITIES = [
+  {
+    title: "STEM outreach and volunteering",
+    details:
+      "Supported STEM events, spoke at local schools, and helped students find work experience in STEM.",
+  },
+  {
+    title: "Co-founder, Caterpillar EDGE",
+    details: "Co-founded Caterpillar's Ethnically Diverse Group of Employees.",
+  },
 ]
 
 export const EDUCATION: Education[] = [
@@ -172,7 +199,7 @@ export const EDUCATION: Education[] = [
     institution: "University of Birmingham",
     period: "Sep 2022 — Jul 2026",
     details:
-      "First Class. Key modules included Artificial Intelligence, Full Stack Development, Systems Programming, Security & Networks, Intelligent Robotics, and Evolutionary Computation.",
+      "First Class. Key modules included Artificial Intelligence, Full Stack Development, Systems Programming, Security & Networks, Intelligent Robotics, Evolutionary Computation, and Teaching Computer Science in Schools.",
   },
   {
     qualification: "A-levels",
@@ -186,23 +213,22 @@ export const EDUCATION: Education[] = [
 export const POSTS: Post[] = [
   {
     tag: "Day outs",
-    title: "A day out with no real plan",
+    title: "A day out",
     date: "Coming soon",
-    excerpt:
-      "A slow wander, a good snack, and the small joy of seeing where the afternoon takes you.",
+    excerpt: "Photos and notes from places I’ve wandered, near or far.",
   },
   {
     tag: "Making",
-    title: "Making something just because",
+    title: "On the making table",
     date: "Coming soon",
     excerpt:
-      "A little project, a slightly messy desk, and no particular reason beyond wanting to try.",
+      "Small projects, works in progress, and experiments I wanted to try.",
   },
   {
-    tag: "Little joys",
-    title: "A small collection of good bits",
+    tag: "Everyday",
+    title: "Bits worth keeping",
     date: "Coming soon",
     excerpt:
-      "The places, objects, and tiny moments I would probably forget if I did not write them down.",
+      "A little collection of things, moments, and details I’d like to remember.",
   },
 ]
