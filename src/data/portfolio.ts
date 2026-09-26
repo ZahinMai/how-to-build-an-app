@@ -8,15 +8,14 @@ import type {
 } from "@/types/portfolio"
 
 export const NAV_LINKS = [
+  "Home",
   "Work",
-  "Skills",
-  "Experience",
-  "Education",
+  "Profile",
+  "Side Quests",
   "Writing",
-  "Contact",
 ]
 
-export const FILTERS = ["All", "Java", "Spring Boot", "AI & Automation", "Data", "Frontend"]
+export const FILTERS = ["All", "Spring Boot", "AI & Automation", "Data & Dashboards", "Frontend"]
 
 export const PROJECTS: Project[] = [
   {
@@ -153,24 +152,24 @@ export const EDUCATION: Education[] = [
 
 export const POSTS: Post[] = [
   {
-    tag: "Engineering",
-    title: "Building agentic AI workflows with Spring Boot",
+    tag: "Day outs",
+    title: "A day out with no real plan",
     date: "Coming soon",
     excerpt:
-      "A practical note on making AI workflows useful, reliable, and slightly less mysterious.",
+      "A slow wander, a good snack, and the small joy of seeing where the afternoon takes you.",
   },
   {
-    tag: "Data",
-    title: "From operational data to useful decisions",
+    tag: "Making",
+    title: "Making something just because",
     date: "Coming soon",
     excerpt:
-      "What better questions and clearer pictures can do for a busy team.",
+      "A little project, a slightly messy desk, and no particular reason beyond wanting to try.",
   },
   {
-    tag: "Career",
-    title: "From Computer Science to financial technology",
+    tag: "Little joys",
+    title: "A small collection of good bits",
     date: "Coming soon",
     excerpt:
-      "A few lessons from code, classrooms, spreadsheets, and finding my way into tech.",
+      "The places, objects, and tiny moments I would probably forget if I did not write them down.",
   },
 ]

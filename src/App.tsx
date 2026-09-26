@@ -14,12 +14,15 @@ import { ProjectsSection } from "@/components/ProjectsSection"
 import { SkillsSection } from "@/components/SkillsSection"
 import { WritingSection } from "@/components/WritingSection"
 import { BlogPostPage } from "@/pages/BlogPostPage"
+import { NotebookPage } from "@/pages/NotebookPage"
 
 function App() {
   const [filter, setFilter] = useState("All")
   const [mobileOpen, setMobileOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activePost, setActivePost] = useState<Post | null>(null)
+  const [showNotebook, setShowNotebook] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const closeAll = useCallback(() => {
     setSelectedProject(null)
@@ -33,8 +36,10 @@ function App() {
 
   useEffect(() => {
     const onHashChange = () => {
-      const postIndex = window.location.hash.match(/^#post-(\d+)$/)?.[1]
+      const hash = window.location.hash
+      const postIndex = hash.match(/^#post-(\d+)$/)?.[1]
       setActivePost(postIndex ? (POSTS[Number(postIndex)] ?? null) : null)
+      setShowNotebook(hash === "#notebook")
     }
 
     onHashChange()
@@ -42,13 +47,47 @@ function App() {
     return () => window.removeEventListener("hashchange", onHashChange)
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [activePost, showNotebook])
+
+  useEffect(() => {
+    if (!isTransitioning) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.location.hash = "notebook"
+      setIsTransitioning(false)
+      return
+    }
+
+    const timeout = window.setTimeout(() => {
+      window.location.hash = "notebook"
+      setIsTransitioning(false)
+    }, 1450)
+
+    return () => window.clearTimeout(timeout)
+  }, [isTransitioning])
+
   const openPost = (post: Post) => {
     const index = POSTS.findIndex((item) => item.title === post.title)
     window.location.hash = `post-${index}`
   }
 
+  const returnToNotebook = () => {
+    window.location.hash = "notebook"
+  }
+
   const returnToPortfolio = () => {
     window.location.hash = "work"
+  }
+
+  const openFromLogo = () => {
+    if (activePost || showNotebook) {
+      window.location.hash = "work"
+      return
+    }
+
+    setIsTransitioning(true)
   }
 
   return (
@@ -67,8 +106,14 @@ function App() {
             mobileOpen={mobileOpen}
             setFilter={setFilter}
             setMobileOpen={setMobileOpen}
+            onLogoClick={openFromLogo}
           />
-          <BlogPostPage post={activePost} onBack={returnToPortfolio} />
+          <BlogPostPage post={activePost} onBack={returnToNotebook} />
+          <Footer />
+        </>
+      ) : showNotebook ? (
+        <>
+          <NotebookPage onOpenPost={openPost} onBack={returnToPortfolio} />
           <Footer />
         </>
       ) : (
@@ -81,9 +126,13 @@ function App() {
             mobileOpen={mobileOpen}
             setFilter={setFilter}
             setMobileOpen={setMobileOpen}
+            onLogoClick={openFromLogo}
           />
           <main id="main">
-            <HeroSection />
+            <HeroSection
+              isTransitioning={isTransitioning}
+              onEnterNotebook={openFromLogo}
+            />
             <ProjectsSection filter={filter} onSelect={setSelectedProject} />
             <SkillsSection />
             <ExperienceSection />

@@ -7,6 +7,7 @@ type HeaderProps = {
   mobileOpen: boolean
   setFilter: Dispatch<SetStateAction<string>>
   setMobileOpen: Dispatch<SetStateAction<boolean>>
+  onLogoClick: () => void
 }
 
 export function Header({
@@ -14,6 +15,7 @@ export function Header({
   mobileOpen,
   setFilter,
   setMobileOpen,
+  onLogoClick,
 }: HeaderProps) {
   const closeMobile = () => setMobileOpen(false)
 
@@ -40,6 +42,10 @@ export function Header({
           className="absolute left-1/2 -translate-x-1/2 font-serif text-2xl italic font-bold tracking-tight"
           style={{ fontFamily: "var(--font-serif)" }}
           aria-label="Zahin Maisa home"
+          onClick={(event) => {
+            event.preventDefault()
+            onLogoClick()
+          }}
         >
           Zahin Maisa
         </a>
@@ -50,11 +56,11 @@ export function Header({
             </a>
           ))}
           <a href="#contact" className="nav-cta">
-            Hire Me
+            Contact
           </a>
         </div>
         <a href="#contact" className="nav-cta md:hidden">
-          Hire Me
+          Contact
         </a>
       </div>
       <nav

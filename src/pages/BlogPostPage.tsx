@@ -7,7 +7,7 @@ type BlogPostPageProps = {
 
 export function BlogPostPage({ post, onBack }: BlogPostPageProps) {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 md:px-12">
+    <main className="notebook-page mx-auto max-w-3xl px-6 py-16 md:px-12">
       <button className="button-secondary mb-12" onClick={onBack}>
         ← Back to portfolio
       </button>
@@ -31,8 +31,8 @@ export function BlogPostPage({ post, onBack }: BlogPostPageProps) {
           className="text-sm leading-relaxed"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          The full story is still being written. Expect practical lessons,
-          honest observations, and the occasional side quest.
+          This little story is still taking shape. Soon this space will hold
+          the photos, details, and small moments from the day.
         </p>
       </div>
     </main>

@@ -68,6 +68,40 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
 .modal { position: relative; width: min(680px, 100%); max-height: min(80vh, 700px); overflow: auto; background: var(--color-cream); border: 2px solid var(--color-ink); padding: 2rem; box-shadow: 12px 12px 0 var(--color-ink); }
 .modal-close { position: absolute; top: .65rem; right: .65rem; width: 2rem; height: 2rem; border: 1px solid var(--color-ink); background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; }
 .modal-close:hover { background: var(--color-ink); color: var(--color-cream); }
+@keyframes notebook-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.notebook-page { animation: notebook-enter 650ms cubic-bezier(.2,.8,.2,1) both; }
+.notebook-post { width: 100%; border-left: 0; border-right: 0; font: inherit; cursor: pointer; transition: background-color 180ms ease, padding 180ms ease; }
+.notebook-post:hover { background: rgba(255,255,255,.2) !important; padding-left: 1rem; padding-right: 1rem; }
+.notebook { --notebook-sand: #ead8b5; }
+.notebook-nav { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid rgba(26,23,20,.15); background: rgba(245,229,199,.88); backdrop-filter: blur(12px); }
+.notebook-nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .75rem 2rem; }
+.notebook-nav-link, .notebook-footer-link { padding: 0; border: 0; background: none; color: var(--color-ink); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; cursor: pointer; text-decoration: none; }
+.notebook-nav-link:hover, .notebook-footer-link:hover { opacity: .65; }
+.notebook-nav-title { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; font-weight: 700; }
+.notebook-hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: linear-gradient(180deg, #d8cba9 0%, #e6d3ad 48%, var(--notebook-sand) 100%); }
+.notebook-desert { position: absolute; inset: -18% 0 0; overflow: hidden; will-change: transform; background: var(--color-cream); }
+.notebook-landscape { display: block; width: 100%; height: 100%; }
+.notebook-hero-fade { position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(to bottom, transparent, rgba(234,216,181,.82) 75%, var(--notebook-sand)); pointer-events: none; }
+.notebook-hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 1.5rem 4.75rem; text-align: center; }
+.notebook-scroll-cue { display: flex; flex-direction: column; align-items: center; gap: .5rem; margin-top: 2rem; opacity: .5; font-size: .65rem; text-transform: uppercase; letter-spacing: .16em; }
+.notebook-scroll-cue div { width: 1px; height: 36px; background: linear-gradient(var(--color-ink), transparent); }
+.notebook-content { background: var(--notebook-sand); }
+.notebook-categories { display: flex; border-top: 2px solid var(--color-ink); border-bottom: 1px solid var(--color-ink); }
+.notebook-categories button { flex: 1; padding: .85rem .5rem; border: 0; background: transparent; color: var(--color-ink); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; cursor: pointer; transition: background-color .15s, color .15s; }
+.notebook-categories button[aria-pressed="true"] { background: var(--color-ink); color: var(--color-cream); }
+.notebook-post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); }
+.notebook-post-card { display: flex; flex-direction: column; min-height: 300px; padding: 2.5rem 2.75rem; border: 0; border-right: 1px solid var(--color-ink); border-bottom: 1px solid var(--color-ink); background: transparent; color: var(--color-ink); text-align: left; cursor: pointer; transition: background-color .18s; }
+.notebook-post-card:hover { background: rgba(26,23,20,.06); }
+.notebook-post-meta, .notebook-post-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.notebook-tag { padding: .25rem .6rem; background: var(--color-burnt); color: var(--color-cream); font-size: .65rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; }
+.notebook-coming-soon, .notebook-post-bottom { color: var(--color-ink-soft); font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; opacity: .58; }
+.notebook-post-card h2 { margin: 1.5rem 0 .75rem; font-family: var(--font-serif); font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.25; }
+.notebook-post-card p { flex: 1; margin: 0 0 1.5rem; color: var(--color-ink-soft); font-size: .875rem; line-height: 1.65; }
+.notebook-post-bottom .notebook-read { color: var(--color-burnt); font-weight: 500; opacity: 1; }
+.notebook-sand-fade { height: 6rem; background: linear-gradient(to bottom, var(--notebook-sand), var(--color-cream)); }
+.notebook-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 2rem; border-top: 1px solid var(--color-ink); background: var(--color-cream); }
+.notebook-footer-name { padding: 0; border: 0; background: none; color: var(--color-ink); font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; font-weight: 700; cursor: pointer; }
+.notebook-footer > span { color: var(--color-silver); font-size: .65rem; text-transform: uppercase; letter-spacing: .15em; }
 
 @media (max-width: 900px) {
   .category-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -95,9 +129,19 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
   .hero-visual { min-height: 460px; }
   .footer { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem 1.5rem; }
   .modal { padding: 1.5rem; box-shadow: 7px 7px 0 var(--color-ink); }
+  .notebook-nav-inner { padding: .75rem 1rem; }
+  .notebook-nav-link { font-size: .58rem; letter-spacing: .1em; }
+  .notebook-hero { min-height: 560px; }
+  .notebook-hero-copy { padding: 0 1.25rem 3rem; }
+  .notebook-categories { overflow-x: auto; }
+  .notebook-categories button { flex: 0 0 auto; padding: .8rem .9rem; font-size: .62rem; }
+  .notebook-post-card { min-height: 260px; padding: 2rem 1.5rem; border-right: 0; }
+  .notebook-footer { flex-wrap: wrap; padding: 1.25rem 1.5rem; }
+  .notebook-footer > span { order: 1; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .notebook-page { animation: none; }
 }
