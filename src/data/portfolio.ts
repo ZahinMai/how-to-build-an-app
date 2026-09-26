@@ -8,14 +8,47 @@ import type {
 } from "@/types/portfolio"
 
 export const NAV_LINKS = [
-  "Home",
-  "Work",
-  "Profile",
-  "Side Quests",
-  "Writing",
+  { label: "Home", href: "#work" },
+  { label: "Work", href: "#projects" },
+  { label: "Profile", href: "#profile" },
+  { label: "Side Quests", href: "#notebook" },
+  { label: "Writing", href: "#writing" },
 ]
 
-export const FILTERS = ["All", "Spring Boot", "AI & Automation", "Data & Dashboards", "Frontend"]
+export const CONTACT_LINKS = [
+  {
+    label: "LinkedIn",
+    handle: "zahin-maisa",
+    href: "https://www.linkedin.com/in/zahin-maisa-3058131ba",
+    color: "var(--color-mauve)",
+  },
+  {
+    label: "Instagram",
+    handle: "@zahin.notalien",
+    href: "https://www.instagram.com/zahin.notalien/",
+    color: "var(--color-burnt)",
+  },
+  {
+    label: "Email",
+    handle: "zahin08@outlook.com",
+    href: "mailto:zahin08@outlook.com",
+    color: "var(--color-forest)",
+  },
+  {
+    label: "Phone",
+    handle: "+44 7377 887085",
+    href: "tel:+447377887085",
+    color: "var(--color-amber)",
+  },
+]
+
+export const FILTERS = [
+  "All",
+  "Spring Boot",
+  "AI & Automation",
+  "Data & Dashboards",
+  "Frontend",
+]
 
 export const PROJECTS: Project[] = [
   {

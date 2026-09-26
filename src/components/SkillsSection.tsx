@@ -16,9 +16,12 @@ const METRICS = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" style={{ borderBottom: "2px solid var(--color-ink)" }}>
+    <section
+      id="profile"
+      style={{ borderBottom: "2px solid var(--color-ink)" }}
+    >
       <div className="two-column-grid">
-        <div style={{ borderRight: "2px solid var(--color-ink)" }}>
+        <div id="skills" style={{ borderRight: "2px solid var(--color-ink)" }}>
           <div
             className="section-title"
             style={{ borderBottom: "1px solid var(--color-ink)" }}
