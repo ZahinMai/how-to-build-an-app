@@ -14,6 +14,7 @@ const CREAM = "var(--color-cream)"
 const POST_ART = [
   {
     background: "#d8c8a2",
+    sticker: "Day out",
     illustration: (
       <svg viewBox="0 0 500 360" aria-hidden="true">
         <circle cx="370" cy="95" r="48" fill="#e7925b" />
@@ -36,6 +37,7 @@ const POST_ART = [
   },
   {
     background: "#d9b9a0",
+    sticker: "In progress",
     illustration: (
       <svg viewBox="0 0 500 360" aria-hidden="true">
         <rect
@@ -69,6 +71,7 @@ const POST_ART = [
   },
   {
     background: "#c8d0b2",
+    sticker: "Everyday",
     illustration: (
       <svg viewBox="0 0 500 360" aria-hidden="true">
         <path
@@ -239,17 +242,16 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
                   style={{ backgroundColor: art.background }}
                 >
                   {art.illustration}
-                  <span className="notebook-art-sticker">a little story</span>
+                  <span className="notebook-art-sticker">{art.sticker}</span>
                 </span>
                 <div className="notebook-post-meta">
                   <span className="notebook-tag">{post.tag}</span>
-                  <span className="notebook-coming-soon">A note for later</span>
                 </div>
                 <h2>{post.title}</h2>
                 <p>{post.excerpt}</p>
                 <div className="notebook-post-bottom">
                   <span>{post.date}</span>
-                  <span className="notebook-read">Take a peek →</span>
+                  <span className="notebook-read">Preview →</span>
                 </div>
               </button>
             )
@@ -257,16 +259,6 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
         </div>
         <div className="notebook-sand-fade" aria-hidden="true" />
       </section>
-
-      <footer className="notebook-footer">
-        <button className="notebook-footer-name" onClick={onBack}>
-          Zahin Maisa
-        </button>
-        <span>Writing · 2026</span>
-        <button className="notebook-footer-link" onClick={onBack}>
-          Back to portfolio
-        </button>
-      </footer>
     </div>
   )
 }

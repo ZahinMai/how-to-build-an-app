@@ -25,8 +25,9 @@ Most text and repeatable content lives in `src/data/portfolio.ts`:
 
 - `PROJECTS` and `PROJECT_FILTERS`: portfolio project cards, detail modal
   content, and category filters.
-- `SKILLS`: skill labels and displayed proficiency values.
+- `SKILLS`: the technologies and methods listed in the profile section.
 - `EXPERIENCE` and `ADDITIONAL_EXPERIENCE`: work history.
+- `LEADERSHIP_AND_ACTIVITIES`: community involvement and leadership.
 - `EDUCATION`: education entries.
 - `POSTS`: personal journal entries. Each post has a `tag`, `title`, `date`,
   and `excerpt`; the tag also supplies its category filter.

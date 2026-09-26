@@ -31,8 +31,8 @@ export function BlogPostPage({ post, onBack }: BlogPostPageProps) {
           className="text-sm leading-relaxed"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          This little story is still taking shape. Soon this space will hold
-          the photos, details, and small moments from the day.
+          This entry is still taking shape. Check back later for the photos,
+          details, and notes I want to keep from it.
         </p>
       </div>
     </main>

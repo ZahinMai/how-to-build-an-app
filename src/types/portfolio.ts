@@ -16,12 +16,6 @@ export type Post = {
   excerpt: string
 }
 
-export type Skill = {
-  label: string
-  level: number
-  color: string
-}
-
 export type Experience = {
   role: string
   company: string
