@@ -1,7 +1,6 @@
-# Zahin Maisa — Portfolio & Side Quests
+# My Portfolio - Now Made a Template
 
-A React, TypeScript, and Vite site for a professional portfolio and a personal
-journal of day-outs, creative projects, and other side quests.
+A React, TypeScript, and Vite site for a professional portfolio. Online newsletter-theme, with hidden features, animations, and a blog section.
 
 ## Run locally
 
@@ -10,8 +9,7 @@ npm install
 npm run dev
 ```
 
-Vite prints the local development URL when it starts. To check the production
-version:
+Vite prints the local development URL when it starts. To check the production version:
 
 ```bash
 npm run build
