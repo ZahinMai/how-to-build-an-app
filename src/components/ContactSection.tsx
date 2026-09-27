@@ -1,4 +1,5 @@
 import { CONTACT_LINKS } from "@/data/portfolio"
+import cvPdf from "@/assets/cv-zahin.pdf"
 
 export function ContactSection() {
   return (
@@ -57,6 +58,23 @@ export function ContactSection() {
             </span>
           </a>
         ))}
+        <a
+          href={cvPdf}
+          download="Zahin-Maisa-CV.pdf"
+          className="contact-link contact-download text-left"
+          style={{ borderTop: "1px solid var(--color-ink)" }}
+        >
+          <span className="text-xs uppercase tracking-widest">CV</span>
+          <span
+            className="font-serif text-xl font-bold"
+            style={{
+              fontFamily: "var(--font-serif)",
+              color: "var(--color-burnt)",
+            }}
+          >
+            Download CV ↓
+          </span>
+        </a>
       </div>
     </section>
   )

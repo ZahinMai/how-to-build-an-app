@@ -22,11 +22,12 @@ import { BlogPostPage } from "@/pages/BlogPostPage"
 import { NotebookPage } from "@/pages/NotebookPage"
 
 function App() {
-  const [filter, setFilter] = useState("All")
   const [mobileOpen, setMobileOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activePost, setActivePost] = useState<Post | null>(null)
   const [showNotebook, setShowNotebook] = useState(false)
+  const [notebookBackgroundScale, setNotebookBackgroundScale] = useState(1)
+  const [notebookLandscapeMoving, setNotebookLandscapeMoving] = useState(false)
   const [gateTransition, setGateTransition] = useState<{
     bounds: GateBounds
     phase: "zooming" | "revealing"
@@ -76,6 +77,8 @@ function App() {
   }
 
   const returnToPortfolio = () => {
+    setNotebookBackgroundScale(1)
+    setNotebookLandscapeMoving(false)
     window.location.hash = "work"
   }
 
@@ -85,6 +88,8 @@ function App() {
       return
     }
 
+    setNotebookBackgroundScale(bounds.backgroundScale)
+    setNotebookLandscapeMoving(false)
     setGateTransition({ bounds, phase: "zooming" })
   }
 
@@ -118,7 +123,10 @@ function App() {
             )
             window.location.hash = "notebook"
           }}
-          onRevealComplete={() => setGateTransition(null)}
+          onRevealComplete={() => {
+            setGateTransition(null)
+            setNotebookLandscapeMoving(true)
+          }}
         />
       )}
       {activePost ? (
@@ -128,7 +136,12 @@ function App() {
         </>
       ) : showNotebook ? (
         <>
-          <NotebookPage onOpenPost={openPost} onBack={returnToPortfolio} />
+          <NotebookPage
+            onOpenPost={openPost}
+            onBack={returnToPortfolio}
+            backgroundScale={notebookBackgroundScale}
+            landscapeMoving={notebookLandscapeMoving}
+          />
           <Footer />
         </>
       ) : (
@@ -137,9 +150,7 @@ function App() {
             Skip to content
           </a>
           <Header
-            filter={filter}
             mobileOpen={mobileOpen}
-            setFilter={setFilter}
             setMobileOpen={setMobileOpen}
             onLogoClick={openFromLogo}
           />
@@ -148,7 +159,7 @@ function App() {
               isTransitioning={gateTransition !== null}
               onEnterNotebook={beginNotebookTransition}
             />
-            <ProjectsSection filter={filter} onSelect={setSelectedProject} />
+            <ProjectsSection onSelect={setSelectedProject} />
             <SkillsSection />
             <ExperienceSection />
             <EducationSection />
