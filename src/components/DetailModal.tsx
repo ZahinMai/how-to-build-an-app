@@ -43,9 +43,6 @@ export function DetailModal({ project, onClose }: DetailModalProps) {
         >
           {project.details}
         </p>
-        <p className="text-sm leading-relaxed mb-8">
-          <strong>Outcome:</strong> {project.outcome}
-        </p>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((tech) => (
             <span key={tech} className="tech-pill">
@@ -53,6 +50,16 @@ export function DetailModal({ project, onClose }: DetailModalProps) {
             </span>
           ))}
         </div>
+        {project.repositoryUrl && (
+          <a
+            href={project.repositoryUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="button-secondary inline-flex mt-8"
+          >
+            Explore the project on GitHub ↗
+          </a>
+        )}
       </div>
     </div>
   )

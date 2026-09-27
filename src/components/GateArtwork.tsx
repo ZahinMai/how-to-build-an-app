@@ -8,6 +8,7 @@ export function GateArtwork({ clipPathId }: GateArtworkProps) {
   return (
     <>
       <path
+        className="toran-gate-frame"
         d="M120,480 L120,220 Q120,90 400,90 Q680,90 680,220 L680,480"
         fill="none"
         stroke="var(--color-ink)"
@@ -50,6 +51,7 @@ export function GateArtwork({ clipPathId }: GateArtworkProps) {
         <circle cx="657" cy="380" r="7" fill="var(--color-burnt)" />
       </g>
       <line
+        className="toran-gate-frame"
         x1="60"
         y1="480"
         x2="740"

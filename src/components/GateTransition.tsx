@@ -11,11 +11,17 @@ export type GateBounds = {
   targetTop: number
   targetWidth: number
   targetHeight: number
+  backgroundScale: number
 }
 
 export function getGateBounds(svg: SVGSVGElement): GateBounds {
   const bounds = svg.getBoundingClientRect()
-  const scale = Math.max(window.innerWidth / 540, window.innerHeight / 380)
+  const scale =
+    Math.max(window.innerWidth / 560, window.innerHeight / 400) * 1.06
+  const notebookFitScale = Math.max(
+    window.innerWidth / 560,
+    window.innerHeight / 390,
+  )
   const targetWidth = 800 * scale
   const targetHeight = 520 * scale
 
@@ -28,6 +34,7 @@ export function getGateBounds(svg: SVGSVGElement): GateBounds {
     targetTop: window.innerHeight / 2 - 290 * scale,
     targetWidth,
     targetHeight,
+    backgroundScale: scale / notebookFitScale,
   }
 }
 
