@@ -1,4 +1,6 @@
+import { BLOG_STORIES } from "@/data/blogStories"
 import type { Post } from "@/types/portfolio"
+import { VlogPhoto } from "@/components/VlogPhoto"
 
 type BlogPostPageProps = {
   post: Post
@@ -6,35 +8,73 @@ type BlogPostPageProps = {
 }
 
 export function BlogPostPage({ post, onBack }: BlogPostPageProps) {
+  const story = BLOG_STORIES[post.title]
+
   return (
-    <main className="notebook-page mx-auto max-w-3xl px-6 py-16 md:px-12">
-      <button className="button-secondary mb-12" onClick={onBack}>
-        ← Back to portfolio
-      </button>
-      <p className="eyebrow mb-4" style={{ color: "var(--color-mauve)" }}>
-        {post.tag} · {post.date}
-      </p>
-      <h1
-        className="font-serif text-5xl md:text-7xl font-bold leading-tight mb-8"
-        style={{ fontFamily: "var(--font-serif)" }}
-      >
-        {post.title}
-      </h1>
-      <p
-        className="text-lg leading-relaxed mb-12"
-        style={{ color: "var(--color-ink-soft)" }}
-      >
-        {post.excerpt}
-      </p>
-      <div className="border-t-2 border-[var(--color-ink)] pt-8">
-        <p
-          className="text-sm leading-relaxed"
-          style={{ color: "var(--color-ink-soft)" }}
-        >
-          This entry is still taking shape. Check back later for the photos,
-          details, and notes I want to keep from it.
-        </p>
-      </div>
+    <main className="vlog-page notebook-page">
+      <header className="vlog-nav">
+        <button className="notebook-nav-link" onClick={onBack}>
+          ← Back to journal
+        </button>
+        <span className="notebook-nav-title">Out of Office</span>
+        <a className="notebook-nav-link" href="#vlog-top">
+          Back to top ↑
+        </a>
+      </header>
+
+      <article id="vlog-top" className="vlog-article">
+        <div className="vlog-heading">
+          <p className="eyebrow mb-5" style={{ color: "var(--color-burnt)" }}>
+            {post.tag} <span aria-hidden="true">·</span> {post.date}{" "}
+            <span aria-hidden="true">·</span> A photo diary
+          </p>
+          <h1>{post.title}</h1>
+          <p className="vlog-deck">{post.excerpt}</p>
+        </div>
+
+        <VlogPhoto
+          file={post.coverImage}
+          alt={`Cover photo for ${post.title}`}
+          caption={`The opening frame — add ${post.coverImage} to your blog photos.`}
+          className="vlog-cover"
+        />
+
+        <p className="vlog-opening">{story.opening}</p>
+
+        <div className="vlog-chapters">
+          {story.chapters.map((chapter, index) => (
+            <section className="vlog-chapter" key={chapter.title}>
+              <div className="vlog-chapter-copy">
+                <p className="eyebrow" style={{ color: "var(--color-mauve)" }}>
+                  Chapter {String(index + 1).padStart(2, "0")}
+                </p>
+                <h2>{chapter.title}</h2>
+                <p>{chapter.text}</p>
+              </div>
+              <div
+                className={`vlog-gallery vlog-gallery-${chapter.photos.length}`}
+              >
+                {chapter.photos.map((photo) => (
+                  <VlogPhoto
+                    key={photo.file}
+                    file={photo.file}
+                    alt={photo.alt}
+                    caption={photo.caption}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <footer className="vlog-endnote">
+          <span aria-hidden="true">✳</span>
+          <p>That’s the little photo diary for now. More soon.</p>
+          <button className="button-secondary" onClick={onBack}>
+            Back to all posts
+          </button>
+        </footer>
+      </article>
     </main>
   )
 }

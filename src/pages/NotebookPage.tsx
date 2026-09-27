@@ -1,113 +1,26 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { LandscapeArtwork } from "@/components/LandscapeArtwork"
+import { VlogPhoto } from "@/components/VlogPhoto"
 import { POSTS } from "@/data/portfolio"
-import { CONTACT_LINKS } from "@/data/portfolio"
 import type { Post } from "@/types/portfolio"
 
 type NotebookPageProps = {
   onOpenPost: (post: Post) => void
   onBack: () => void
+  backgroundScale: number
+  landscapeMoving: boolean
 }
 
 const CREAM = "var(--color-cream)"
-const POST_ART = [
-  {
-    background: "#d8c8a2",
-    sticker: "Day out",
-    illustration: (
-      <svg viewBox="0 0 500 360" aria-hidden="true">
-        <circle cx="370" cy="95" r="48" fill="#e7925b" />
-        <path d="M0 230 125 130l95 85 105-125 175 135v135H0Z" fill="#8fa870" />
-        <path
-          d="M0 278 125 205l110 75 105-80 160 75v85H0Z"
-          fill="#cd6e3a"
-          opacity=".72"
-        />
-        <path d="M160 360c0-55 38-96 88-96s88 41 88 96" fill="#f5e5c7" />
-        <path d="M211 278h74l-7 82h-60Z" fill="#a47a99" />
-        <path
-          d="M284 292c45-8 43 40 0 39"
-          fill="none"
-          stroke="#a47a99"
-          strokeWidth="12"
-        />
-      </svg>
-    ),
-  },
-  {
-    background: "#d9b9a0",
-    sticker: "In progress",
-    illustration: (
-      <svg viewBox="0 0 500 360" aria-hidden="true">
-        <rect
-          x="90"
-          y="60"
-          width="320"
-          height="245"
-          rx="8"
-          fill="#f5e5c7"
-          transform="rotate(-5 250 180)"
-        />
-        <path d="m151 221 76-98 42 54 42-30 70 87H151Z" fill="#8fa870" />
-        <circle cx="340" cy="116" r="23" fill="#e7925b" />
-        <path
-          d="M0 310c110-30 250-18 500-52v102H0Z"
-          fill="#a47a99"
-          opacity=".8"
-        />
-        <path
-          d="M213 284c8-55 25-78 45-96m0 96c2-48 23-67 48-79m-93 79c-5-33-21-47-41-57"
-          fill="none"
-          stroke="#698464"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-        <circle cx="257" cy="183" r="12" fill="#e7925b" />
-        <circle cx="310" cy="202" r="12" fill="#f2b05a" />
-        <circle cx="171" cy="225" r="12" fill="#a47a99" />
-      </svg>
-    ),
-  },
-  {
-    background: "#c8d0b2",
-    sticker: "Everyday",
-    illustration: (
-      <svg viewBox="0 0 500 360" aria-hidden="true">
-        <path
-          d="M0 258c98-62 169-42 244 0s161 49 256-8v110H0Z"
-          fill="#8fa870"
-        />
-        <rect x="191" y="104" width="122" height="128" rx="14" fill="#f5e5c7" />
-        <path
-          d="M313 133c76-17 75 80 0 69"
-          fill="none"
-          stroke="#f5e5c7"
-          strokeWidth="19"
-        />
-        <path
-          d="M214 88c-19-24 25-30 7-58m49 58c-19-24 25-30 7-58"
-          fill="none"
-          stroke="#a47a99"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-        <path
-          d="M106 236c2-54 7-93 39-121m-39 121c-1-41-20-62-48-75m47 49c20-34 43-42 66-44"
-          fill="none"
-          stroke="#698464"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-        <circle cx="146" cy="111" r="15" fill="#e7925b" />
-        <circle cx="96" cy="163" r="15" fill="#a47a99" />
-        <circle cx="172" cy="164" r="15" fill="#f2b05a" />
-      </svg>
-    ),
-  },
-]
+const POST_CATEGORIES = ["All", ...new Set(POSTS.map((post) => post.tag))]
 
-export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
+export function NotebookPage({
+  onOpenPost,
+  onBack,
+  backgroundScale,
+  landscapeMoving,
+}: NotebookPageProps) {
   const [activeCategory, setActiveCategory] = useState("All")
   const [scrollY, setScrollY] = useState(0)
 
@@ -118,10 +31,6 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const categories = useMemo(
-    () => ["All", ...new Set(POSTS.map((post) => post.tag))],
-    [],
-  )
   const filteredPosts =
     activeCategory === "All"
       ? POSTS
@@ -160,15 +69,15 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
           style={{ transform: `translate3d(0, ${scrollY * 0.2}px, 0)` }}
         >
           <svg
-            className="notebook-landscape"
+            className={`notebook-landscape ${landscapeMoving ? "is-moving" : ""}`}
             viewBox="120 90 560 390"
             preserveAspectRatio="xMidYMid slice"
             focusable="false"
+            style={{ transform: `scale(${backgroundScale})` }}
           >
             <LandscapeArtwork />
           </svg>
         </div>
-        <div className="notebook-hero-fade" aria-hidden="true" />
         <div className="notebook-hero-copy">
           <h1
             id="notebook-title"
@@ -207,14 +116,14 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
           className="notebook-categories"
           aria-label="Filter journal entries by category"
         >
-          {categories.map((category, index) => (
+          {POST_CATEGORIES.map((category, index) => (
             <button
               key={category}
               aria-pressed={activeCategory === category}
               onClick={() => setActiveCategory(category)}
               style={{
                 borderRight:
-                  index < categories.length - 1
+                  index < POST_CATEGORIES.length - 1
                     ? "1px solid var(--color-ink)"
                     : undefined,
               }}
@@ -226,23 +135,19 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
 
         <div className="notebook-post-grid">
           {filteredPosts.map((post) => {
-            const artIndex = POSTS.findIndex(
-              (item) => item.title === post.title,
-            )
-            const art = POST_ART[artIndex % POST_ART.length]
-
             return (
               <button
                 key={post.title}
                 className="notebook-post-card"
                 onClick={() => onOpenPost(post)}
               >
-                <span
-                  className="notebook-post-art"
-                  style={{ backgroundColor: art.background }}
-                >
-                  {art.illustration}
-                  <span className="notebook-art-sticker">{art.sticker}</span>
+                <span className="notebook-post-cover">
+                  <VlogPhoto
+                    file={post.coverImage}
+                    alt={`Cover photo for ${post.title}`}
+                    className="notebook-post-art"
+                  />
+                  <span className="notebook-art-sticker">Photo diary</span>
                 </span>
                 <div className="notebook-post-meta">
                   <span className="notebook-tag">{post.tag}</span>
@@ -257,7 +162,6 @@ export function NotebookPage({ onOpenPost, onBack }: NotebookPageProps) {
             )
           })}
         </div>
-        <div className="notebook-sand-fade" aria-hidden="true" />
       </section>
     </div>
   )
