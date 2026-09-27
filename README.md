@@ -15,9 +15,12 @@ version:
 
 ```bash
 npm run build
-npx tsc --noEmit
+npm run check
 npm run preview
 ```
+
+`npm run check` runs the TypeScript compiler without emitting files. Use
+`npm run format -- <paths>` to format specific files with oxfmt.
 
 ## Where to edit content
 
@@ -29,16 +32,17 @@ Most text and repeatable content lives in `src/data/portfolio.ts`:
 - `EXPERIENCE` and `ADDITIONAL_EXPERIENCE`: work history.
 - `LEADERSHIP_AND_ACTIVITIES`: community involvement and leadership.
 - `EDUCATION`: education entries.
-- `POSTS`: personal journal entries. Each post has a `tag`, `title`, `date`,
-  and `excerpt`; the tag also supplies its category filter.
+- `POSTS`: personal journal entries, including their card cover image paths.
+  Post copy and photo captions live in `src/data/blogStories.ts`.
 - `CONTACT_LINKS`: LinkedIn, Instagram, email, and phone destinations and
   displayed labels.
 - `NAV_LINKS`: main navigation labels and their section or page destinations.
 
-Update a post here to change its card and its placeholder article page. The
-illustrations for journal cards are currently defined in
-`src/pages/NotebookPage.tsx` in `POST_ART`; update or add an illustration there
-if you add more posts.
+Add vlog photos to `src/assets/blog/` using the filenames shown in the photo
+placeholders. Update `POSTS` and `BLOG_STORIES` when adding or editing a post.
+
+The contact section's **Download CV** link downloads the PDF at
+`src/assets/cv-zahin.pdf`.
 
 ## Where to edit layout and styling
 
