@@ -1,19 +1,15 @@
 import type { Dispatch, SetStateAction } from "react"
 
-import { FILTERS, NAV_LINKS } from "@/data/portfolio"
+import { NAV_LINKS } from "@/data/portfolio"
 
 type HeaderProps = {
-  filter: string
   mobileOpen: boolean
-  setFilter: Dispatch<SetStateAction<string>>
   setMobileOpen: Dispatch<SetStateAction<boolean>>
   onLogoClick: () => void
 }
 
 export function Header({
-  filter,
   mobileOpen,
-  setFilter,
   setMobileOpen,
   onLogoClick,
 }: HeaderProps) {
@@ -74,24 +70,6 @@ export function Header({
           </a>
         ))}
       </nav>
-      <div className="category-strip">
-        {FILTERS.map((category, index) => (
-          <button
-            key={category}
-            aria-pressed={filter === category}
-            onClick={() => setFilter(category)}
-            className="category-button"
-            style={{
-              borderRight:
-                index < FILTERS.length - 1
-                  ? "1px solid var(--color-ink)"
-                  : undefined,
-            }}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
     </header>
   )
 }

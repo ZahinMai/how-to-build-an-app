@@ -41,70 +41,19 @@ export const CONTACT_LINKS = [
   },
 ]
 
-export const FILTERS = [
-  "All",
-  "Spring Boot",
-  "AI & Automation",
-  "Data & Dashboards",
-  "Frontend",
-]
-
 export const PROJECTS: Project[] = [
   {
-    tag: "Software Engineering",
-    title: "Client Onboarding Automation",
-    desc: "An agentic AI workflow for processing institutional client data and accelerating account activation.",
-    tech: ["Java", "Spring Boot", "Microservices"],
-    color: "#cd6e3a",
-    year: "2025",
-    details:
-      "A BNY client onboarding platform built around Spring Boot microservices and agentic AI orchestration.",
-    outcome: "Reduced an account activation stage from days to minutes.",
-  },
-  {
-    tag: "Business Analysis",
-    title: "Operational Process Automation",
-    desc: "A continuous improvement initiative that standardised internal IT and Project Management Office workflows.",
-    tech: ["Requirements", "Automation", "Agile"],
-    color: "#9a7ba0",
-    year: "2025",
-    details:
-      "A Caterpillar initiative focused on gathering requirements, standardising processes, and supporting software delivery.",
-    outcome:
-      "Reduced Project Management Office administration overhead by 60%.",
-  },
-  {
-    tag: "Data Visualisation",
-    title: "Employee Engagement Platform",
-    desc: "A data visualisation platform for aggregating and analysing employee engagement metrics.",
-    tech: ["Data visualisation", "Employee engagement"],
+    tag: "Robotics",
+    title: "Webots Multi-Robot Coordination",
+    desc: "A little cafeteria world where cleaning robots try out different ways of sharing tasks and getting around.",
+    tech: ["Webots", "Python", "Multi-Agent Systems", "A* Navigation"],
     color: "#4a7058",
     year: "2025",
     details:
-      "A Caterpillar platform designed to bring employee engagement data together for clearer analysis and reporting.",
-    outcome:
-      "Improved visibility of engagement metrics to support operational decision-making.",
-  },
-  {
-    tag: "Cybersecurity",
-    title: "Contract Compliance Evidence",
-    desc: "Validated and delivered cyber certification evidence for a major industrial contract.",
-    tech: ["Cybersecurity", "Compliance", "Documentation"],
-    color: "#8fa870",
-    year: "2025",
-    details:
-      "A Caterpillar compliance workstream focused on validating cyber certification evidence against contract requirements.",
-    outcome:
-      "Helped safeguard a £50M contract through accurate compliance delivery.",
+      "Built in Webots to play with baseline, swarm, and auction-based coordination. The robots navigate around the same cafeteria, collect spawned trash, and log what happens across different strategies.",
+    repositoryUrl: "https://github.com/ZahinMai/Clean-Up-Crew",
   },
 ]
-
-export const PROJECT_FILTERS: Record<string, string[]> = {
-  "Client Onboarding Automation": ["Java", "Spring Boot", "AI & Automation"],
-  "Operational Process Automation": ["Agile", "Data"],
-  "Employee Engagement Platform": ["Data", "Frontend"],
-  "Contract Compliance Evidence": ["Data"],
-}
 
 export const SKILLS = [
   "Java",
@@ -144,7 +93,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Code Sensei",
     company: "Code Ninjas · Leicester",
     period: "Jul 2023 — Apr 2025",
-    desc: "Taught students aged 5–16 Scratch, Luau, JavaScript, and C#, while leading Arduino and LEGO robotics workshops.",
+    desc: "Taught students aged 5-16 Scratch, Luau, JavaScript, and C#, while leading Arduino and LEGO robotics workshops.",
   },
 ]
 
@@ -212,23 +161,27 @@ export const EDUCATION: Education[] = [
 
 export const POSTS: Post[] = [
   {
-    tag: "Day outs",
-    title: "A day out",
-    date: "Coming soon",
-    excerpt: "Photos and notes from places I’ve wandered, near or far.",
-  },
-  {
-    tag: "Making",
-    title: "On the making table",
-    date: "Coming soon",
+    tag: "Birmingham",
+    title: "Things to do in Birmingham",
+    date: "A city day out",
     excerpt:
-      "Small projects, works in progress, and experiments I wanted to try.",
+      "A camera-roll kind of guide to canal walks, good coffee, colourful corners and an unhurried day in Birmingham.",
+    coverImage: "things-to-do-birmingham-cover.jpg",
   },
   {
     tag: "Everyday",
-    title: "Bits worth keeping",
-    date: "Coming soon",
+    title: "Microdosing my dream life",
+    date: "Little by little",
     excerpt:
-      "A little collection of things, moments, and details I’d like to remember.",
+      "Tiny rituals, small adventures and the everyday choices that make ordinary weeks feel a little more like the life I want.",
+    coverImage: "microdosing-dream-life-cover.jpg",
+  },
+  {
+    tag: "Little joys",
+    title: "Little things I love",
+    date: "A photo diary",
+    excerpt:
+      "A scrapbook of the small, lovely details that make me pause, look closer and feel glad to be here.",
+    coverImage: "little-things-i-love-cover.jpg",
   },
 ]
