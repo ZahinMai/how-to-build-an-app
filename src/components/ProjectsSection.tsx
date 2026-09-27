@@ -1,37 +1,30 @@
-import { PROJECTS, PROJECT_FILTERS } from "@/data/portfolio"
+import { PROJECTS } from "@/data/portfolio"
 import type { Project } from "@/types/portfolio"
 
 type ProjectsSectionProps = {
-  filter: string
   onSelect: (project: Project) => void
 }
 
-export function ProjectsSection({ filter, onSelect }: ProjectsSectionProps) {
-  const visibleProjects = PROJECTS.filter(
-    (project) =>
-      filter === "All" || PROJECT_FILTERS[project.title]?.includes(filter),
-  )
-
+export function ProjectsSection({ onSelect }: ProjectsSectionProps) {
   return (
     <section
       id="projects"
       style={{ borderBottom: "2px solid var(--color-ink)" }}
     >
       <div className="section-heading-grid">
-        <div className="section-title">Selected Work</div>
+        <div className="section-title">Projects &amp; Experiments</div>
         <div className="section-intro">
-          A selection of engineering and analysis work across banking,
-          manufacturing, and data-driven operations.
+          Projects, experiments, and things I’ve enjoyed making along the way.
         </div>
       </div>
-      {visibleProjects.map((project, index) => (
+      {PROJECTS.map((project, index) => (
         <button
           key={project.title}
           className="project-row text-left w-full group"
           onClick={() => onSelect(project)}
           style={{
             borderBottom:
-              index < visibleProjects.length - 1
+              index < PROJECTS.length - 1
                 ? "1px solid var(--color-ink)"
                 : undefined,
           }}
@@ -74,16 +67,11 @@ export function ProjectsSection({ filter, onSelect }: ProjectsSectionProps) {
               className="flex items-center gap-3 text-sm font-medium uppercase tracking-widest group-hover:gap-6 transition-all"
               style={{ color: project.color }}
             >
-              View Project <span className="text-xl">→</span>
+              Take a look <span className="text-xl">→</span>
             </span>
           </span>
         </button>
       ))}
-      {visibleProjects.length === 0 && (
-        <div className="px-8 py-12 text-sm">
-          No projects are tagged with “{filter}” yet.
-        </div>
-      )}
     </section>
   )
 }

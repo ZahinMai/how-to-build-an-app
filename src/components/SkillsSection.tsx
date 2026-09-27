@@ -61,7 +61,7 @@ export function SkillsSection() {
             className="section-title"
             style={{ borderBottom: "1px solid var(--color-ink)" }}
           >
-            Selected highlights
+            By the Numbers
           </div>
           <div className="grid grid-cols-2 grid-rows-3">
             {METRICS.map(([value, label, backgroundColor, color], index) => (
