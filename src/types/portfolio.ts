@@ -6,7 +6,7 @@ export type Project = {
   color: string
   year: string
   details: string
-  outcome: string
+  repositoryUrl?: string
 }
 
 export type Post = {
@@ -14,6 +14,7 @@ export type Post = {
   title: string
   date: string
   excerpt: string
+  coverImage: string
 }
 
 export type Experience = {

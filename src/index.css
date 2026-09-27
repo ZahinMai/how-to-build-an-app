@@ -84,7 +84,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--color-burnt); o
 @keyframes gate-side-fade { from { opacity: 1; } to { opacity: 0; } }
 @keyframes notebook-hill-back-roll { from { transform: translateX(0); } to { transform: translateX(-46px); } }
 @keyframes notebook-hill-front-roll { from { transform: translateX(0); } to { transform: translateX(-28px); } }
-@keyframes notebook-sun-drift { from { cx: 400px; cy: 228px; } to { cx: 635px; cy: 128px; } }
+@keyframes notebook-sun-drift { from { cx: 400px; cy: 228px; } to { cx: 620px; cy: 178px; } }
 .notebook-landscape.is-moving .landscape-hill-back { transform-box: fill-box; transform-origin: center; animation: notebook-hill-back-roll 1500ms cubic-bezier(.2,.7,.25,1) both; }
 .notebook-landscape.is-moving .landscape-hill-front { transform-box: fill-box; transform-origin: center; animation: notebook-hill-front-roll 1250ms cubic-bezier(.2,.7,.25,1) both; }
 .notebook-landscape.is-moving .landscape-sun { animation: notebook-sun-drift 1700ms cubic-bezier(.2,.7,.25,1) both; }
